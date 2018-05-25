@@ -1,0 +1,16 @@
+body {
+  padding: 25px;
+}
+
+h1 {
+  color: blue;
+  text-align: center;
+}
+
+.logs {
+  margin-top: 25px;
+  padding: 25px;
+  border: solid;
+  border-radius: 10px;
+  width: 300px;
+}

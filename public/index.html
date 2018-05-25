@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weigh-Training Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="app">
+      <h1>Weigh-Training Tracker</h1>
+      <button v-on:click="createNewLog()" name="button">Create new log</button>
+      <div v-for="log in logs" class="logs">
+        <button v-on:click="deleteLog(log)" name="button">X</button>
+        <p>Weight Log for {{log.date}}</p>
+        <form>
+          <input v-model="exerciseName" placeholder="Exercise Name">
+          <button v-on:click.prevent="createNewExercise(log)" name="button">Add Exercise</button>
+          <div v-for="exercise in exercises" class="exercises">
+            <p>{{exercise.name}}</p>
+            <hr>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
