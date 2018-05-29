@@ -19,7 +19,8 @@ app.get('/api/logs/', (req, res) => {
 
 app.get('/api/logs/:id/exercises/', (req, res) => {
   let id = parseInt(req.params.id);
-  db('exercises').select().from('exercises').where('dateId', id).then(exercises => {
+  db('exercises').select().from('exercises').where({dateId: id}).then(exercises => {
+    console.log(exercises);
     res.send(exercises);
   }).catch(error => {
     res.status(500).json({ error });
@@ -37,6 +38,7 @@ app.post('/api/logs/', (req, res) => {
 
 app.post('/api/logs/:id/exercises/', (req, res) => {
   db('exercises').insert({name: req.body.name, dateId: req.body.dateId}).then(exercises => {
+    // console.log(req.body.name);
     console.log("New exercise was created!");
     res.status(200).json({id:exercises[0]});
   }).catch(error => {

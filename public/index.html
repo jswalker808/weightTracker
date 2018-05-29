@@ -9,17 +9,16 @@
     <div id="app">
       <h1>Weigh-Training Tracker</h1>
       <button v-on:click="createNewLog()" name="button">Create new log</button>
-      <div v-for="log in logs" class="logs">
+      <div v-for="(log, index) in logs" class="logs">
         <button v-on:click="deleteLog(log)" name="button">X</button>
-        <p>Weight Log for {{log.date}}</p>
+        <p>Weight Log for {{log.date}} <span style="margin-left: 10px; font-weight: bold;">ID:{{log.id}}</span></p>
         <form>
-          <input v-model="exerciseName" placeholder="Exercise Name">
-          <button v-on:click.prevent="createNewExercise(log)" name="button">Add Exercise</button>
-          <div v-for="exercise in exercises" class="exercises">
-            <p>{{exercise.name}}</p>
-            <hr>
-          </div>
+          <input v-model="log.exercises.name" placeholder="Exercise Name">
+          <button v-on:click.prevent="createNewExercise(log, index)" name="button">Add Exercise</button>
         </form>
+        <div v-for="(exercise, index) in log.exercises" class="exercises">
+          <p>{{value}}</p>
+        </div>
       </div>
     </div>
 
