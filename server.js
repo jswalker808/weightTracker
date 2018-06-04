@@ -88,4 +88,15 @@ app.delete('/api/logs/:logid/exercises/:exerciseid', (req, res) => {
   });
 });
 
+app.delete('/api/logs/:logid/exercises/:exerciseid/sets/:setid', (req, res) => {
+  console.log("deleting exercise from log");
+  let id = parseInt(req.params.setid);
+  db('sets').where('id',id).del().then(sets => {
+    res.sendStatus(200);
+  }).catch(error => {
+    console.log(error);
+    res.status(500).json({ error });
+  });
+});
+
 app.listen(3003, () => console.log("Server listening on port 3003!"));

@@ -72,7 +72,8 @@ let app = new Vue({
       });
       console.log(this.logs[index]);
     },
-    deleteExercise: function(log, exercise) {
+    deleteExercise: function(log, exercise, index, exIndex) {
+      this.deleteAllSets(index, exIndex);
       axios.delete('/api/logs/' + log.id + '/exercises/'+ exercise.id).then(response => {
         this.getLogs();
         return true;
@@ -81,7 +82,7 @@ let app = new Vue({
     },
     deleteAllExercises: function(index) {
       for (let i = 0; i < this.logs[index].exercises.length; i++) {
-        this.deleteExercise(this.logs[index].id, this.logs[index].exercises[i]);
+        this.deleteExercise(this.logs[index].id, this.logs[index].exercises[i], index, i);
       }
     },
     addExerciseProperty: function() {
@@ -115,6 +116,20 @@ let app = new Vue({
         return true;
       }).catch(err => {
       });
+    },
+    deleteSet: function(log, exercise, set) {
+      axios.delete('/api/logs/' + log.id + '/exercises/'+ exercise.id + '/sets/' + set.id).then(response => {
+        this.getLogs();
+        return true;
+      }).catch(err => {
+      });
+    },
+    deleteAllSets: function(logIndex, exIndex) {
+      console.log("the log index is " + logIndex);
+      console.log("the exercise index is " + exIndex);
+      for (let i = 0; i < this.logs[logIndex].exercises[exIndex].sets.length; i++) {
+        this.deleteSet(this.logs[logIndex], this.logs[logIndex].exercises[exIndex], this.logs[logIndex].exercises[exIndex].sets[i]);
+      }
     },
     addSetProperty: function(index) {
       for (let i = 0; i < this.logs[index].exercises.length; i++) {

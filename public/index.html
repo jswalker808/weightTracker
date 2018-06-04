@@ -18,7 +18,7 @@
         </form>
         <!-- <p>{{ log.exercises }}</p> -->
         <div v-for="(exercise, exIndex) in log.exercises" class="exercises">
-          <p>{{exercise.name}} <button class="exerciseDelete" v-on:click="deleteExercise(log, exercise)">X</button></p>
+          <p>{{exercise.name}} <button class="exerciseDelete" v-on:click="deleteExercise(log, exercise, index, exIndex)">X</button></p>
           <div class="setContainer">
             <label class="repFormLabel" for="reps">Reps</label>
             <input v-model="exercise.sets.reps" class="repForm" placeholder=" #" name="reps">
@@ -26,7 +26,7 @@
             <input v-model="exercise.sets.weight"class="weightForm" placeholder=" lbs/kgs" name="weight">
             <button v-on:click.prevent="createNewSet(log, index, exercise, exIndex)" class="addSetsButton" name="button">+</button>
             <div class="sets" v-for="(set, index) in exercise.sets">
-              <p>Set {{ index+1 }}: {{ set.reps }} reps of {{ set.weight }} lbs.</p>
+              <p>Set {{ index+1 }}: {{ set.reps }} reps of {{ set.weight }} lbs. <button v-on:click="deleteSet(log, exercise, set)" name="button">X</button></p>
             </div>
           </div>
           <hr>
