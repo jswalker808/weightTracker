@@ -2,31 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weigh-Training Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div id="app">
       <h1>Weigh-Training Tracker</h1>
-      <button v-on:click="createNewLog()" name="button">Create new log</button>
+      <button v-on:click="createNewLog()" name="button" class="createNewLogButton submitButtons">Create new log</button>
       <div v-for="(log, index) in logs" class="logs">
-        <button v-on:click="deleteLog(log, index)" name="button" class="logDelete">X</button>
-        <p>{{log.date}}</p>
+        <button v-on:click="deleteLog(log, index)" name="button" class="logDelete delete">X</button>
+        <p class="date">{{log.date}}</p>
         <form>
+          <p class="logError errorMessage">Enter an exercise name</p>
           <input v-model="log.exercises.name" placeholder="Exercise Name">
-          <button v-on:click.prevent="createNewExercise(log, index)" name="button">Add Exercise</button>
+          <button v-on:click.prevent="createNewExercise(log, index)" name="button" class="submitButtons">Add Exercise</button>
         </form>
         <!-- <p>{{ log.exercises }}</p> -->
         <div v-for="(exercise, exIndex) in log.exercises" class="exercises">
-          <p>{{exercise.name}} <button class="exerciseDelete" v-on:click="deleteExercise(log, exercise, index, exIndex)">X</button></p>
+          <p class="exerciseName">{{exercise.name}} <button class="exerciseDelete delete" v-on:click="deleteExercise(log, exercise, index, exIndex)">X</button></p>
           <div class="setContainer">
             <label class="repFormLabel" for="reps">Reps</label>
             <input v-model="exercise.sets.reps" class="repForm" placeholder=" #" name="reps">
             <label class="weightFormLabel" for="weight">Weight</label>
             <input v-model="exercise.sets.weight"class="weightForm" placeholder=" lbs/kgs" name="weight">
-            <button v-on:click.prevent="createNewSet(log, index, exercise, exIndex)" class="addSetsButton" name="button">+</button>
+            <button v-on:click.prevent="createNewSet(log, index, exercise, exIndex)" class="addSetsButton submitButtons" name="button">+</button>
             <div class="sets" v-for="(set, index) in exercise.sets">
-              <p>Set {{ index+1 }}: {{ set.reps }} reps of {{ set.weight }} lbs. <button v-on:click="deleteSet(log, exercise, set)" name="button">X</button></p>
+              <p class="set"><span class="setNumber">{{ index+1 }}:</span> {{ set.reps }} / {{ set.weight }} lbs. <button v-on:click="deleteSet(log, exercise, set)" class="setDelete delete" name="button">X</button></p>
             </div>
           </div>
           <hr>

@@ -1,38 +1,77 @@
 body {
   padding: 25px;
+  font-family: 'Lato', sans-serif;
+  color: #827130;
 }
 
 h1 {
-  color: blue;
   text-align: center;
 }
 
+button {
+  border-radius: 3px;
+  border: none;
+  padding: 5px;
+}
+
+  .delete {
+    background-color: #f94f4f;
+    color: white;
+  }
+
 input {
   border-radius: 4px;
-  border-color: grey;
+  outline: none;
+  border: solid 2px grey;
+  height: 20px;
+  font-size: 15px;
+  color: grey;
 }
 
 input:focus {
   border-color: #4ac3ef;
+  border-width: 3px;
 }
+
+.submitButtons {
+  background-color: #4ac3ef;
+  color: white;
+}
+
+.errorMessage {
+  color: #f94f4f;
+}
+  .logError {
+    display: none;
+  }
 
 .logs {
   margin-top: 25px;
   padding: 25px;
-  border: solid;
+  border: solid 3px #889EAC;
   border-radius: 10px;
-  width: 300px;
+  width: 350px;
 }
-
+  .date {
+    font-weight: bolder;
+  }
   .logs:hover .logDelete {
     visibility: visible;
   }
-
   .logDelete {
     float: right;
     visibility: hidden;
   }
+  .createNewLogButton {
+    font-size: 15px;
+    padding: 10px;
+    font-weight: 500;
+  }
 
+.exercises {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .exercises:hover .exerciseDelete {
   visibility: visible;
 }
@@ -40,13 +79,16 @@ input:focus {
     float: right;
     visibility: hidden;
     margin-left: 5px;
+    font-size: 10px;
+  }
+  .exerciseName {
+    font-weight: bold;
   }
 
 .setContainer {
   margin-left: 5px;
-}
-.setContainer:hover .addSetsButton {
-  visibility: visible;
+  padding-left: 10px;
+  padding-right: 10px;
 }
   label {
     font-size: 15px;
@@ -55,12 +97,27 @@ input:focus {
     width: 30px;
   }
   .weightForm {
-    width: 50px;
+    width: 55px;
   }
   .weightFormLabel {
     margin-left: 5px;
   }
+  .setNumber {
+    font-weight: bold;
+    margin-right: 10px;
+  }
   .addSetsButton {
     /* visibility: hidden; */
     margin-left: 10px;
+    border-radius: 50%;
+    padding: 2px;
+    width: 20px;
+  }
+  .setDelete {
+    font-size: 8px;
+    margin-left: 5px;
+    visibility: hidden;
+  }
+  .set:hover .setDelete {
+    visibility: visible;
   }
